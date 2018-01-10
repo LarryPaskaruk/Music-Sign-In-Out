@@ -6,7 +6,7 @@
 package javaapplication20;
 
 /**
- *
+ *LARRY
  * @author 068787845
  */
 public class Student {
@@ -23,9 +23,28 @@ public class Student {
     public void setStuNumber(int stuNumber){
        this.stuNumber=stuNumber; 
     }
-    
+    public void setFName(String fName){
+       this.fName=fName; 
+    }
+    public void setLName(String lName){
+       this.lName=lName; 
+    }
+    public void setEmail(String email){
+       this.email=email; 
+    }
+    public int getStuNumber(){
+        return stuNumber;
+    }
+    public String getFName(){
+        return fName;
+    }
+    public String getLName(){
+        return lName;
+    }
+    public String getEmail(){
+        return email;
+    }
     public String toString(Student s){
         return s.stuNumber+", "+s.fName+", "+s.lName+", "+s.email;
-    }
-    
+    }   
 }
