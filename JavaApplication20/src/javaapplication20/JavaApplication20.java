@@ -5,17 +5,17 @@
  */
 package javaapplication20;
 
+import java.io.File;
+
 /**
  *
  * @author 068787845
  */
 public class JavaApplication20 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    File checkOut = new File("");
+   
+    public void signOut (int stuNum, int instrumentNum){
+        
     }
     
 }
