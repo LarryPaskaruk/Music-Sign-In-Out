@@ -13,12 +13,10 @@ public class Student {
     int stuNumber;
     String fName;
     String lName;
-    String email;
-    public Student(int stuNumber, String fName, String lName, String email){
+    public Student(int stuNumber, String fName, String lName){
       this.stuNumber=stuNumber;
       this.fName= fName;
       this.lName=lName;
-      this.email=email;
     }
     public void setStuNumber(int stuNumber){
        this.stuNumber=stuNumber; 
@@ -29,9 +27,6 @@ public class Student {
     public void setLName(String lName){
        this.lName=lName; 
     }
-    public void setEmail(String email){
-       this.email=email; 
-    }
     public int getStuNumber(){
         return stuNumber;
     }
@@ -41,10 +36,7 @@ public class Student {
     public String getLName(){
         return lName;
     }
-    public String getEmail(){
-        return email;
-    }
     public String toString(Student s){
-        return s.stuNumber+", "+s.fName+", "+s.lName+", "+s.email;
+        return s.stuNumber+", "+s.fName+", "+s.lName;
     }   
 }
