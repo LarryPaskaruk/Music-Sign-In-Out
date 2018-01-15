@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,21 +22,38 @@ import javax.swing.JOptionPane;
  * @author 068787845
  */
 public class StudentEngine {
-    File checkOut = new File("");
-   
-    public void signOut (int stuNum, int instrumentNum) throws IOException{
-            PrintWriter pw = new PrintWriter(new FileWriter(checkOut,true));
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            LocalDateTime now = LocalDateTime.now();
-            //format of each record is in: time, instrument number, student number, out
-            pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",out"); 
+    
+    
+   //format of each record is in: time, instrument number, student number, in/out
+    public static void signInOut (int stuNum, int instrumentNum) throws IOException{
+        File history = new File("History.txt");
+        PrintWriter pw = new PrintWriter(new FileWriter(history,true));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        Scanner s = new Scanner(history);
+        LocalDateTime now = LocalDateTime.now();
+    //loop through the previous contents of the file to check if this instrument has been checked out or not
+        //read every line into an arraylist
+        ArrayList a=new ArrayList<String>();
+        while(s.hasNextLine()){
+            a.add(s.nextLine());
+        }
+        //create for loop that starts from the end of the arraylist (most recent)
+        for(int i=a.size()-1;i>=0;i--){
+            //for each line, chech if it is the current instrument
+            String [] record=a.get(i).toString().split(",");
+            if (record[1].equals(instrumentNum)){
+                //if so, check if it was signed in or out
+                if(record[1].equals("out")){
+                    //if out, print a record signing the instrument in
+                    pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",in"); 
+                }
+                else //if in, print a record signing the instrument out
+                    pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",out"); 
+                    
+            }
+            //if not go to the next record
+            else continue;
+        }
     }
     
-    public void signIn (int stuNum, int instrumentNum) throws IOException{
-            PrintWriter pw = new PrintWriter(new FileWriter(checkOut,true));
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            LocalDateTime now = LocalDateTime.now();
-            //format of each record is in: time, instrument number, student number, in
-            pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",in"); 
-    }
 }
