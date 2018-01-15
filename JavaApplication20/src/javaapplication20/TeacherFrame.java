@@ -94,6 +94,11 @@ public class TeacherFrame extends javax.swing.JFrame {
         });
 
         signedOutButton.setText("Signed Out");
+        signedOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signedOutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout teacherPanel1Layout = new javax.swing.GroupLayout(teacherPanel1);
         teacherPanel1.setLayout(teacherPanel1Layout);
@@ -203,7 +208,12 @@ public class TeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
-        // TODO add your handling code here:
+        if(historyButton.getText().equals("History")){
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            addClassButton.setText("Back");
+        }
     }//GEN-LAST:event_historyButtonActionPerformed
 
     private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
@@ -213,11 +223,33 @@ public class TeacherFrame extends javax.swing.JFrame {
             signedOutButton.setVisible(false);
             addClassButton.setText("Back");
         }
+        else{
+            logoutButton.setVisible(true);
+            addClassButton.setVisible(true);
+            addInstrumentButton.setVisible(true);
+            historyButton.setVisible(true);
+            signedOutButton.setVisible(true);
+            addClassButton.setText("Add Class");
+        }
     }//GEN-LAST:event_addClassButtonActionPerformed
 
     private void addInstrumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInstrumentButtonActionPerformed
-        // TODO add your handling code here:
+        if(addInstrumentButton.getText().equals("Add Instrument")){
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            addClassButton.setText("Back");
+        }
     }//GEN-LAST:event_addInstrumentButtonActionPerformed
+
+    private void signedOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signedOutButtonActionPerformed
+        if(signedOutButton.getText().equals("Signed Out")){
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            addClassButton.setText("Back");
+        }
+    }//GEN-LAST:event_signedOutButtonActionPerformed
 
     /**
      * @param args the command line arguments
