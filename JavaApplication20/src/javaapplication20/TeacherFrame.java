@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package javaapplication20;
+import java.io.File;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class TeacherFrame extends javax.swing.JFrame {
     String password= "teacher1";
+    File student = new File("student.txt");
     /**
      * Creates new form TeacherFrame
      */
@@ -22,6 +25,7 @@ public class TeacherFrame extends javax.swing.JFrame {
         addInstrumentButton.setVisible(false);
         historyButton.setVisible(false);
         signedOutButton.setVisible(false);
+        textField.setVisible(false);
     }
 
     /**
@@ -42,6 +46,7 @@ public class TeacherFrame extends javax.swing.JFrame {
         addInstrumentButton = new javax.swing.JButton();
         historyButton = new javax.swing.JButton();
         signedOutButton = new javax.swing.JButton();
+        textField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,22 +105,17 @@ public class TeacherFrame extends javax.swing.JFrame {
             }
         });
 
+        textField.setPreferredSize(new java.awt.Dimension(150, 25));
+        textField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout teacherPanel1Layout = new javax.swing.GroupLayout(teacherPanel1);
         teacherPanel1.setLayout(teacherPanel1Layout);
         teacherPanel1Layout.setHorizontalGroup(
             teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(teacherPanel1Layout.createSequentialGroup()
-                .addContainerGap(240, Short.MAX_VALUE)
-                .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
-                        .addComponent(pWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(220, 220, 220))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
-                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(269, 269, 269))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
-                        .addComponent(pWordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(195, 195, 195))))
             .addGroup(teacherPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +132,20 @@ public class TeacherFrame extends javax.swing.JFrame {
                             .addComponent(signedOutButton)
                             .addComponent(historyButton))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
+                .addContainerGap(240, Short.MAX_VALUE)
+                .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
+                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(269, 269, 269))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
+                        .addComponent(pWordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(195, 195, 195))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
+                        .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pWordField, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(textField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(220, 220, 220))))
         );
         teacherPanel1Layout.setVerticalGroup(
             teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,11 +162,13 @@ public class TeacherFrame extends javax.swing.JFrame {
                 .addComponent(signedOutButton)
                 .addGap(54, 54, 54)
                 .addComponent(pWordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(9, 9, 9)
+                .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pWordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(loginButton)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,6 +221,8 @@ public class TeacherFrame extends javax.swing.JFrame {
             addInstrumentButton.setVisible(false);
             historyButton.setVisible(false);
             signedOutButton.setVisible(false);
+            textField.setVisible(false);
+            pWordLabel.setText("Please enter the teacher password.");
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
@@ -217,18 +235,29 @@ public class TeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_historyButtonActionPerformed
 
     private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
+        //when acting as the add class button
         if(addClassButton.getText().equals("Add Class")){
             addInstrumentButton.setVisible(false);
             historyButton.setVisible(false);
             signedOutButton.setVisible(false);
+            textField.setVisible(true);
+            pWordLabel.setVisible(true);
             addClassButton.setText("Back");
+            pWordLabel.setText("Print file name.");
+            Scanner readClass= new Scanner(textField.getText());
+            while(readClass.hasNextLine()){
+                
+            }
+            
         }
+        //when acting as the back button
         else{
             logoutButton.setVisible(true);
             addClassButton.setVisible(true);
             addInstrumentButton.setVisible(true);
             historyButton.setVisible(true);
             signedOutButton.setVisible(true);
+            textField.setVisible(false);
             addClassButton.setText("Add Class");
         }
     }//GEN-LAST:event_addClassButtonActionPerformed
@@ -250,6 +279,10 @@ public class TeacherFrame extends javax.swing.JFrame {
             addClassButton.setText("Back");
         }
     }//GEN-LAST:event_signedOutButtonActionPerformed
+
+    private void textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,5 +329,6 @@ public class TeacherFrame extends javax.swing.JFrame {
     private javax.swing.JLabel pWordLabel;
     private javax.swing.JButton signedOutButton;
     private javaapplication20.TeacherPanel teacherPanel1;
+    private javax.swing.JTextField textField;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,7 +12,7 @@ package javaapplication20;
 public class TeacherPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form TeacherPanel
+     * Creates new form teacherPanel
      */
     public TeacherPanel() {
         initComponents();
