@@ -5,7 +5,12 @@
  */
 package javaapplication20;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -245,10 +250,16 @@ public class TeacherFrame extends javax.swing.JFrame {
             addClassButton.setText("Back");
             pWordLabel.setText("Print file name.");
             Scanner readClass= new Scanner(textField.getText());
-            while(readClass.hasNextLine()){
-                
-            }
             
+            try {
+                PrintWriter pw= new PrintWriter(new FileWriter(student,true));while(readClass.hasNextLine()){
+                String temp = readClass.toString();
+                pw.println(temp);
+                pw.close();  
+            }
+            } catch (IOException ex) {
+                Logger.getLogger(TeacherFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }   
         }
         //when acting as the back button
         else{
