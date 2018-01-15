@@ -30,3 +30,4 @@ public static void historyDisplay(){
             hisEnt = hisData.split(",");
     }
 }
+}
