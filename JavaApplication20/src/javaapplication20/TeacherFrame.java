@@ -17,6 +17,11 @@ public class TeacherFrame extends javax.swing.JFrame {
      */
     public TeacherFrame() {
         initComponents();
+        logoutButton.setVisible(false);
+        addClassButton.setVisible(false);
+        addInstrumentButton.setVisible(false);
+        historyButton.setVisible(false);
+        signedOutButton.setVisible(false);
     }
 
     /**
@@ -32,9 +37,15 @@ public class TeacherFrame extends javax.swing.JFrame {
         pWordField = new javax.swing.JPasswordField();
         pWordLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
+        addClassButton = new javax.swing.JButton();
+        addInstrumentButton = new javax.swing.JButton();
+        historyButton = new javax.swing.JButton();
+        signedOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        teacherPanel1.setBackground(new java.awt.Color(255, 255, 255));
         teacherPanel1.setPreferredSize(new java.awt.Dimension(650, 650));
 
         pWordField.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +65,41 @@ public class TeacherFrame extends javax.swing.JFrame {
             }
         });
 
+        logoutButton.setText("LOG OUT");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
+        addClassButton.setText("Add Class");
+        addClassButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addClassButtonActionPerformed(evt);
+            }
+        });
+
+        addInstrumentButton.setText("Add Instrument");
+        addInstrumentButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addInstrumentButtonActionPerformed(evt);
+            }
+        });
+
+        historyButton.setText("History");
+        historyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyButtonActionPerformed(evt);
+            }
+        });
+
+        signedOutButton.setText("Signed Out");
+        signedOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signedOutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout teacherPanel1Layout = new javax.swing.GroupLayout(teacherPanel1);
         teacherPanel1.setLayout(teacherPanel1Layout);
         teacherPanel1Layout.setHorizontalGroup(
@@ -70,11 +116,37 @@ public class TeacherFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
                         .addComponent(pWordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(195, 195, 195))))
+            .addGroup(teacherPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(teacherPanel1Layout.createSequentialGroup()
+                        .addComponent(addInstrumentButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(teacherPanel1Layout.createSequentialGroup()
+                        .addComponent(addClassButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logoutButton)
+                        .addGap(18, 18, 18))
+                    .addGroup(teacherPanel1Layout.createSequentialGroup()
+                        .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(signedOutButton)
+                            .addComponent(historyButton))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         teacherPanel1Layout.setVerticalGroup(
             teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(teacherPanel1Layout.createSequentialGroup()
-                .addGap(227, 227, 227)
+                .addGap(27, 27, 27)
+                .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logoutButton)
+                    .addComponent(addClassButton))
+                .addGap(18, 18, 18)
+                .addComponent(addInstrumentButton)
+                .addGap(18, 18, 18)
+                .addComponent(historyButton)
+                .addGap(18, 18, 18)
+                .addComponent(signedOutButton)
+                .addGap(54, 54, 54)
                 .addComponent(pWordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(pWordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,8 +178,15 @@ public class TeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_pWordFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if(pWordField.getText().equals("teacher1")){
-           
+        if(pWordField.getText().equals(password)){
+            pWordField.setVisible(false);
+            pWordLabel.setVisible(false);
+            loginButton.setVisible(false);
+            logoutButton.setVisible(true);
+            addClassButton.setVisible(true);
+            addInstrumentButton.setVisible(true);
+            historyButton.setVisible(true);
+            signedOutButton.setVisible(true);
         }
         else{
             JOptionPane.showMessageDialog(this, "Password is incorrect. Please try again.");
@@ -115,6 +194,62 @@ public class TeacherFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+            pWordField.setVisible(true);
+            pWordField.setText("");
+            pWordLabel.setVisible(true);
+            loginButton.setVisible(true);
+            logoutButton.setVisible(false);
+            addClassButton.setVisible(false);
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
+        if(historyButton.getText().equals("History")){
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            addClassButton.setText("Back");
+        }
+    }//GEN-LAST:event_historyButtonActionPerformed
+
+    private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
+        if(addClassButton.getText().equals("Add Class")){
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            addClassButton.setText("Back");
+        }
+        else{
+            logoutButton.setVisible(true);
+            addClassButton.setVisible(true);
+            addInstrumentButton.setVisible(true);
+            historyButton.setVisible(true);
+            signedOutButton.setVisible(true);
+            addClassButton.setText("Add Class");
+        }
+    }//GEN-LAST:event_addClassButtonActionPerformed
+
+    private void addInstrumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInstrumentButtonActionPerformed
+        if(addInstrumentButton.getText().equals("Add Instrument")){
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            addClassButton.setText("Back");
+        }
+    }//GEN-LAST:event_addInstrumentButtonActionPerformed
+
+    private void signedOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signedOutButtonActionPerformed
+        if(signedOutButton.getText().equals("Signed Out")){
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            addClassButton.setText("Back");
+        }
+    }//GEN-LAST:event_signedOutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,9 +287,14 @@ public class TeacherFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addClassButton;
+    private javax.swing.JButton addInstrumentButton;
+    private javax.swing.JButton historyButton;
     private javax.swing.JButton loginButton;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JPasswordField pWordField;
     private javax.swing.JLabel pWordLabel;
+    private javax.swing.JButton signedOutButton;
     private javaapplication20.TeacherPanel teacherPanel1;
     // End of variables declaration//GEN-END:variables
 }
