@@ -14,12 +14,14 @@ import java.util.Scanner;
  * @author 069982957
  */
 public class History_Display {
-    public static File history = new File ("History.txt");
+
+    public static File history = new File("History.txt");
     public static Scanner s;
-    
-    
-public static void historyDisplay(){
-        String [] hisEnt = new String[4];
+
+    public static String historyDisplay(String instrument) {
+        String[] hisEnt = new String[4];
+        String readOut = "";
+        String hist = "";
         try {
             s = new Scanner(history);
         } catch (FileNotFoundException ex) {
@@ -28,6 +30,14 @@ public static void historyDisplay(){
         while (s.hasNextLine()) {
             String hisData = s.nextLine();
             hisEnt = hisData.split(",");
+            if (hisEnt[1].equals(instrument)) {
+                for (int i = 0; i < hisEnt.length; i++) {
+                    readOut = readOut + hisEnt[i] + ":";
+                }
+                hist = hist + readOut + "\n";
+            }
+
+        }
+        return hist;
     }
-}
 }
