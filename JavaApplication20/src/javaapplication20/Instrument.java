@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Instrument {
     private int barNum;
     private String name;
-    private String history;
+   
 
     public int getBarNum() {
         return barNum;
@@ -34,15 +34,9 @@ public class Instrument {
         this.name = name;
     }
 
-    public void setHistory(String h) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        this.history+=("\n"+dtf.format(now)+h);
-    }
-
     @Override
     public String toString() {
-        return(name+"\n"+history);
+        return(name+barNum);
     }
     
     
