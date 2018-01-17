@@ -8,6 +8,7 @@ package javaapplication20;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -89,9 +90,9 @@ public class StudentFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            StudentEngine.signInOut(Integer.parseInt(jTextField1.getText()),Integer.parseInt(jTextField2.getText()));
+            StudentEngine.signInOut(jTextField1.getText(),jTextField2.getText());
         } catch (IOException ex) {
-            //Logger.getLogger(StudentFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this,"Input/Output error");
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

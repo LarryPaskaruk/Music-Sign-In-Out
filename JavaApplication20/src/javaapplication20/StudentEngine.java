@@ -25,7 +25,7 @@ public class StudentEngine {
     
     
    //format of each record is in: time, instrument number, student number, in/out
-    public static void signInOut (int stuNum, int instrumentNum) throws IOException{
+    public static void signInOut (String stuNum, String instrumentNum) throws IOException{
         File history = new File("History.txt");
         PrintWriter pw = new PrintWriter(new FileWriter(history,true));
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -43,17 +43,24 @@ public class StudentEngine {
             String [] record=a.get(i).toString().split(",");
             if (record[1].equals(instrumentNum)){
                 //if so, check if it was signed in or out
-                if(record[1].equals("out")){
+                if(record[3].equals("out")){
                     //if out, print a record signing the instrument in
                     pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",in"); 
+                    break;
                 }
                 else //if in, print a record signing the instrument out
                     pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",out"); 
-                    
+                    break;
             }
             //if not go to the next record
             else continue;
         }
+        //print the record signing the instrument out if the history file is empty
+        if(a.size()==0){
+            pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",out"); 
+        }
+        pw.close();
+        s.close();
     }
     
 }
