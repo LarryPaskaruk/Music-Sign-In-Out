@@ -12,14 +12,14 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author 068787845
  */
 public class TeacherFrame extends javax.swing.JFrame {
     String password= "teacher1";
-    File student = new File("student.txt");
+    String fileName;
+    int screen = 0;
     /**
      * Creates new form TeacherFrame
      */
@@ -32,7 +32,6 @@ public class TeacherFrame extends javax.swing.JFrame {
         signedOutButton.setVisible(false);
         textField.setVisible(false);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -199,7 +198,8 @@ public class TeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_pWordFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if(pWordField.getText().equals(password)){
+        //correct password inputted
+        if(screen == 0 && pWordField.getText().equals(password)){
             pWordField.setVisible(false);
             pWordLabel.setVisible(false);
             loginButton.setVisible(false);
@@ -208,12 +208,44 @@ public class TeacherFrame extends javax.swing.JFrame {
             addInstrumentButton.setVisible(true);
             historyButton.setVisible(true);
             signedOutButton.setVisible(true);
+            screen = 1;
         }
+        //enter for add class 
+        else if(screen == 1 ){//&& pWordLabel.getText().equals("Print file name.")){
+            File student = new File("Students.txt");
+            fileName= textField.getText();
+             Scanner readClass;         
+            try {
+                readClass = new Scanner(new File(fileName));
+                PrintWriter pw= new PrintWriter(new FileWriter(student,true));
+                while(readClass.hasNextLine()){
+                String temp = readClass.nextLine();
+                pw.println(temp);
+               
+            } 
+                pw.close();  
+                readClass.close();
+            } catch (IOException ex) {
+                System.out.println("hhhhhhhhhheeelp" + ex);
+            }   
+        }
+        //enter for add instrument
+        else if(pWordLabel.getText().equals("Please scan barcode.")){
+            File instrument = new File("Instruments.txt");        
+            try {
+                PrintWriter pw= new PrintWriter(new FileWriter(instrument,true));
+                String temp = textField.getText();
+                pw.println(temp);
+                pw.close();  
+            } catch (IOException ex) {
+                Logger.getLogger(TeacherFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //wrong password inputed 
         else{
             JOptionPane.showMessageDialog(this, "Password is incorrect. Please try again.");
             pWordField.setText("");
-        }
-        
+        }        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -238,7 +270,8 @@ public class TeacherFrame extends javax.swing.JFrame {
             addClassButton.setText("Back");
         }
     }//GEN-LAST:event_historyButtonActionPerformed
-
+//LARRY
+    //this action isn't working yet, not printing to Sudents.txt, to fix
     private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
         //when acting as the add class button
         if(addClassButton.getText().equals("Add Class")){
@@ -247,19 +280,10 @@ public class TeacherFrame extends javax.swing.JFrame {
             signedOutButton.setVisible(false);
             textField.setVisible(true);
             pWordLabel.setVisible(true);
+            loginButton.setVisible(true);
+            loginButton.setText("Enter");
             addClassButton.setText("Back");
-            pWordLabel.setText("Print file name.");
-            Scanner readClass= new Scanner(textField.getText());
-            
-            try {
-                PrintWriter pw= new PrintWriter(new FileWriter(student,true));while(readClass.hasNextLine()){
-                String temp = readClass.toString();
-                pw.println(temp);
-                pw.close();  
-            }
-            } catch (IOException ex) {
-                Logger.getLogger(TeacherFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }   
+            pWordLabel.setText("Print file name.");          
         }
         //when acting as the back button
         else{
@@ -269,16 +293,23 @@ public class TeacherFrame extends javax.swing.JFrame {
             historyButton.setVisible(true);
             signedOutButton.setVisible(true);
             textField.setVisible(false);
+            loginButton.setVisible(false);
+            pWordLabel.setVisible(false);
             addClassButton.setText("Add Class");
         }
     }//GEN-LAST:event_addClassButtonActionPerformed
-
+//LARRY
     private void addInstrumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInstrumentButtonActionPerformed
         if(addInstrumentButton.getText().equals("Add Instrument")){
             addInstrumentButton.setVisible(false);
             historyButton.setVisible(false);
             signedOutButton.setVisible(false);
             addClassButton.setText("Back");
+            textField.setVisible(true);
+            pWordLabel.setVisible(true);
+            pWordLabel.setText("Please scan barcode.");
+            loginButton.setVisible(true);
+            loginButton.setText("Enter");
         }
     }//GEN-LAST:event_addInstrumentButtonActionPerformed
 
