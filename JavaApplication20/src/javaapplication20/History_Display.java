@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
 /**
  *
  * @author 069982957
@@ -20,7 +21,6 @@ public class History_Display {
 
     public static String historyDisplay(String instrument) {
         String[] hisEnt = new String[4];
-        String readOut = "";
         String hist = "";
         try {
             s = new Scanner(history);
@@ -28,15 +28,17 @@ public class History_Display {
             System.out.println("File not found");
         }
         while (s.hasNextLine()) {
+            String readOut = "";
             String hisData = s.nextLine();
             hisEnt = hisData.split(",");
             if (hisEnt[1].equals(instrument)) {
                 for (int i = 0; i < hisEnt.length; i++) {
                     readOut = readOut + hisEnt[i] + ":";
                 }
-                hist = hist + readOut + "\n";
+                
+                
             }
-
+            hist = hist + readOut + "\n";
         }
         s.close();
         return hist;

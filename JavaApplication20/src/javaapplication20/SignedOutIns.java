@@ -19,7 +19,7 @@ public class SignedOutIns {
 
     public static String signedOutDisplay() {
         String[] hisEnt = new String[4];
-        String readOut = "";
+        
         String hist = "";
         try {
             s = new Scanner(history);
@@ -27,6 +27,7 @@ public class SignedOutIns {
             System.out.println("File not found");
         }
         while (s.hasNextLine()) {
+            String readOut = "";
             String hisData = s.nextLine();
             hisEnt = hisData.split(",");
             if (hisEnt[3].equals("out")) {
