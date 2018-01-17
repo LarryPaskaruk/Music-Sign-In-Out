@@ -89,12 +89,18 @@ public class StudentFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int i=0;//variable representing if the information was written to the file successfully
         try {
             StudentEngine.signInOut(jTextField1.getText(),jTextField2.getText());
         } catch (IOException ex) {
+            i=1;
             JOptionPane.showMessageDialog(this,"Input/Output error");
         }
-        
+        if(i==0){//checks if the information was written to the file successfully
+        JOptionPane.showMessageDialog(this,"Action Successful!");
+        }
+        jTextField1.setText("");//reset the text fields
+        jTextField2.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
