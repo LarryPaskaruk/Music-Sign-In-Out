@@ -200,6 +200,7 @@ public class TeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_pWordFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        int i=0;
         //correct password inputted
         if(screen == 0 && pWordField.getText().equals(password)){
             pWordField.setVisible(false);
@@ -227,10 +228,13 @@ public class TeacherFrame extends javax.swing.JFrame {
                 pw.close();  
                 readClass.close();
             } catch (IOException ex) {
+                i=1;
                 JOptionPane.showMessageDialog(this, "Class not added.");
             }  
+            if(i==0){
             JOptionPane.showMessageDialog(this, "Class successfully added.");
             textField.setText("");
+            }
         }
         //enter for add instrument
         else if(screen==3){
@@ -241,10 +245,13 @@ public class TeacherFrame extends javax.swing.JFrame {
                 pw.println(temp);
                 pw.close();  
             } catch (IOException ex) {
+                i=1;
                 JOptionPane.showMessageDialog(this, "Instrument not added.");
             }
+            if(i==0){
             JOptionPane.showMessageDialog(this, "Instrument successfully added.");
             textField.setText("");
+            }
         }
         //wrong password inputed 
         else{

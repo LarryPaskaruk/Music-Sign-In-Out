@@ -39,14 +39,12 @@ public class StudentFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextField1.setText("jTextField1");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(java.awt.Color.white);
 
         jLabel1.setText("Student Number:");
 
         jLabel2.setText("Instrument Bar Code: ");
-
-        jTextField2.setText("jTextField2");
 
         jButton1.setText("Confirm Action");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
