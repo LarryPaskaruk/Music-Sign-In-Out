@@ -32,6 +32,7 @@ public class TeacherFrame extends javax.swing.JFrame {
         historyButton.setVisible(false);
         signedOutButton.setVisible(false);
         textField.setVisible(false);
+        //jTextArea1.setEnabled(false);
     }
 
     /**
@@ -139,19 +140,19 @@ public class TeacherFrame extends javax.swing.JFrame {
                             .addComponent(historyButton))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
-                .addContainerGap(195, Short.MAX_VALUE)
+                .addContainerGap(240, Short.MAX_VALUE)
                 .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
-                        .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pWordField, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                            .addComponent(textField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(220, 220, 220))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
                         .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(269, 269, 269))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
-                        .addComponent(pWordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(147, 147, 147))))
+                        .addComponent(pWordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(195, 195, 195))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
+                        .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pWordField, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(textField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(220, 220, 220))))
         );
         teacherPanel1Layout.setVerticalGroup(
             teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,9 +167,9 @@ public class TeacherFrame extends javax.swing.JFrame {
                 .addComponent(historyButton)
                 .addGap(18, 18, 18)
                 .addComponent(signedOutButton)
-                .addGap(57, 57, 57)
+                .addGap(54, 54, 54)
                 .addComponent(pWordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pWordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,44 +196,22 @@ public class TeacherFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pWordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pWordFieldActionPerformed
+    private void textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pWordFieldActionPerformed
+    }//GEN-LAST:event_textFieldActionPerformed
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if(pWordField.getText().equals(password)){
-            pWordField.setVisible(false);
-            pWordLabel.setVisible(false);
-            loginButton.setVisible(false);
-            logoutButton.setVisible(true);
-            addClassButton.setVisible(true);
-            addInstrumentButton.setVisible(true);
-            historyButton.setVisible(true);
-            signedOutButton.setVisible(true);
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Password is incorrect. Please try again.");
-            pWordField.setText("");
-        }
-        
-    }//GEN-LAST:event_loginButtonActionPerformed
-
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-            pWordField.setVisible(true);
-            pWordField.setText("");
-            pWordLabel.setVisible(true);
-            loginButton.setVisible(true);
-            logoutButton.setVisible(false);
-            addClassButton.setVisible(false);
+    private void signedOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signedOutButtonActionPerformed
+        if(signedOutButton.getText().equals("Signed Out")){
             addInstrumentButton.setVisible(false);
             historyButton.setVisible(false);
             signedOutButton.setVisible(false);
-            textField.setVisible(false);
-            pWordLabel.setText("Please enter the teacher password.");
-    }//GEN-LAST:event_logoutButtonActionPerformed
+            addClassButton.setText("Back");
+        }
+    }//GEN-LAST:event_signedOutButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
         if(historyButton.getText().equals("History")){
+            String hist;
             textField.setVisible(true);
             addInstrumentButton.setVisible(false);
             historyButton.setVisible(false);
@@ -240,8 +219,19 @@ public class TeacherFrame extends javax.swing.JFrame {
             pWordLabel.setVisible(true);
             pWordLabel.setText("Scan in an Instrument to see the history");
             addClassButton.setText("Back");
+            hist=History_Display.historyDisplay(textField.getText());
+           // jTextArea1.setText(hist);
         }
     }//GEN-LAST:event_historyButtonActionPerformed
+
+    private void addInstrumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInstrumentButtonActionPerformed
+        if(addInstrumentButton.getText().equals("Add Instrument")){
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            addClassButton.setText("Back");
+        }
+    }//GEN-LAST:event_addInstrumentButtonActionPerformed
 
     private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
         //when acting as the add class button
@@ -249,21 +239,22 @@ public class TeacherFrame extends javax.swing.JFrame {
             addInstrumentButton.setVisible(false);
             historyButton.setVisible(false);
             signedOutButton.setVisible(false);
+            //jTextArea1.setVisible(false);
             textField.setVisible(true);
             pWordLabel.setVisible(true);
             addClassButton.setText("Back");
             pWordLabel.setText("Print file name.");
             Scanner readClass= new Scanner(textField.getText());
-            
+
             try {
                 PrintWriter pw= new PrintWriter(new FileWriter(student,true));while(readClass.hasNextLine()){
-                String temp = readClass.toString();
-                pw.println(temp);
-                pw.close();  
-            }
+                    String temp = readClass.toString();
+                    pw.println(temp);
+                    pw.close();
+                }
             } catch (IOException ex) {
                 Logger.getLogger(TeacherFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }   
+            }
         }
         //when acting as the back button
         else{
@@ -277,27 +268,42 @@ public class TeacherFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addClassButtonActionPerformed
 
-    private void addInstrumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInstrumentButtonActionPerformed
-        if(addInstrumentButton.getText().equals("Add Instrument")){
-            addInstrumentButton.setVisible(false);
-            historyButton.setVisible(false);
-            signedOutButton.setVisible(false);
-            addClassButton.setText("Back");
-        }
-    }//GEN-LAST:event_addInstrumentButtonActionPerformed
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        pWordField.setVisible(true);
+        pWordField.setText("");
+        pWordLabel.setVisible(true);
+        loginButton.setVisible(true);
+        logoutButton.setVisible(false);
+        addClassButton.setVisible(false);
+        addInstrumentButton.setVisible(false);
+        historyButton.setVisible(false);
+        signedOutButton.setVisible(false);
+        textField.setVisible(false);
+        pWordLabel.setText("Please enter the teacher password.");
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void signedOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signedOutButtonActionPerformed
-        if(signedOutButton.getText().equals("Signed Out")){
-            addInstrumentButton.setVisible(false);
-            historyButton.setVisible(false);
-            signedOutButton.setVisible(false);
-            addClassButton.setText("Back");
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        if(pWordField.getText().equals(password)){
+            pWordField.setVisible(false);
+            pWordLabel.setVisible(false);
+            loginButton.setVisible(false);
+            logoutButton.setVisible(true);
+           // jTextArea1.setVisible(false);
+            addClassButton.setVisible(true);
+            addInstrumentButton.setVisible(true);
+            historyButton.setVisible(true);
+            signedOutButton.setVisible(true);
         }
-    }//GEN-LAST:event_signedOutButtonActionPerformed
+        else{
+            JOptionPane.showMessageDialog(this, "Password is incorrect. Please try again.");
+            pWordField.setText("");
+        }
 
-    private void textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldActionPerformed
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void pWordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pWordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldActionPerformed
+    }//GEN-LAST:event_pWordFieldActionPerformed
 
     /**
      * @param args the command line arguments

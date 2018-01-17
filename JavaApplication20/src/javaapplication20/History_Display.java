@@ -38,6 +38,7 @@ public class History_Display {
             }
 
         }
+        s.close();
         return hist;
     }
 }
