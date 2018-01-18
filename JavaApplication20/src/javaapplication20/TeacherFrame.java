@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
  * @author 068787845
  */
 public class TeacherFrame extends javax.swing.JFrame {
-
     String password = "teacher1";
     File student = new File("student.txt");
       String fileName;
@@ -39,9 +38,7 @@ public class TeacherFrame extends javax.swing.JFrame {
         signedOutButton.setVisible(false);
         textField.setVisible(false);
         jTextPane1.setEnabled(false);
-
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,18 +136,20 @@ public class TeacherFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(teacherPanel1Layout.createSequentialGroup()
-                        .addComponent(addInstrumentButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(teacherPanel1Layout.createSequentialGroup()
-                        .addComponent(addClassButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logoutButton)
-                        .addGap(18, 18, 18))
-                    .addGroup(teacherPanel1Layout.createSequentialGroup()
                         .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(signedOutButton)
                             .addComponent(historyButton))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
+                        .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(teacherPanel1Layout.createSequentialGroup()
+                                .addComponent(addInstrumentButton)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(teacherPanel1Layout.createSequentialGroup()
+                                .addComponent(addClassButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logoutButton)))
+                        .addGap(18, 18, 18))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
                 .addContainerGap(222, Short.MAX_VALUE)
                 .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,8 +225,6 @@ public class TeacherFrame extends javax.swing.JFrame {
       
     }//GEN-LAST:event_signedOutButtonActionPerformed
 
-    
-    
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
  if(screen==1){
             textField.setVisible(true);
@@ -241,8 +238,7 @@ public class TeacherFrame extends javax.swing.JFrame {
             loginButton.setVisible(true);
             loginButton.setText("Search");
             screen=4;
-        }
-        
+        } 
     }//GEN-LAST:event_historyButtonActionPerformed
 
     private void addInstrumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInstrumentButtonActionPerformed
@@ -275,14 +271,10 @@ public class TeacherFrame extends javax.swing.JFrame {
             pWordLabel.setText("Print file name. EX: class01.txt");   
             screen=2;
         }
-        else if (screen ==4){
-            jTextPane1.setEnabled(false);
-            jTextPane1.setText("");
-            textField.setText("");
-            pWordLabel.setText("");
-        }
         //when acting as the back button
         else{
+            jTextPane1.setEnabled(false);
+            jTextPane1.setText("");
             logoutButton.setVisible(true);
             addClassButton.setVisible(true);
             addInstrumentButton.setVisible(true);
@@ -294,7 +286,6 @@ public class TeacherFrame extends javax.swing.JFrame {
             addClassButton.setText("Add Class");
             screen=1;
         }        
-
     }//GEN-LAST:event_addClassButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed

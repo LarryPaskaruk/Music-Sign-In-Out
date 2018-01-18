@@ -64,10 +64,9 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
                                   <Component id="addInstrumentButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="changePWordButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="addClassButton" min="-2" max="-2" attributes="0"/>
@@ -113,10 +112,7 @@
                       <Component id="addClassButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="addInstrumentButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="changePWordButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="addInstrumentButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="historyButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -223,14 +219,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="changePWordButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Change Password"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changePWordButtonActionPerformed"/>
-          </Events>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
