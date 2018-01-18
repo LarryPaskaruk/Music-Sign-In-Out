@@ -40,13 +40,9 @@ public class StudentFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("jTextField1");
+        jLabel1.setText("Student Number (Please scan student card barcode):");
 
-        jLabel1.setText("Student Number:");
-
-        jLabel2.setText("Instrument Bar Code: ");
-
-        jTextField2.setText("jTextField2");
+        jLabel2.setText("Instrument Bar Code (Please scan instrument barcode): ");
 
         jButton1.setText("Confirm Action");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +63,7 @@ public class StudentFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextField1)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
