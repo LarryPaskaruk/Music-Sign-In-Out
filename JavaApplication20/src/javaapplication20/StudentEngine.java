@@ -37,12 +37,14 @@ public class StudentEngine {
         while(s.hasNextLine()){
             a.add(s.nextLine());
         }
+        int j=0;//variable to check if the instrument is a new instrument
         //create for loop that starts from the end of the arraylist (most recent)
         for(int i=a.size()-1;i>=0;i--){
             //for each line, chech if it is the current instrument
             String [] record=a.get(i).toString().split(",");
             if (record[1].equals(instrumentNum)){
-                //if so, check if it was signed in or out
+                //if so, change j to show instrument have been found, and then check if it was signed in or out
+                j=1;
                 if(record[3].equals("out")){
                     //if out, print a record signing the instrument in
                     pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",in"); 
@@ -55,8 +57,8 @@ public class StudentEngine {
             //if not go to the next record
             else continue;
         }
-        //print the record signing the instrument out if the history file is empty
-        if(a.size()==0){
+        //print the record signing the instrument out if there is no previous record of this instrument
+        if(j==0){
             pw.println(dtf.format(now)+","+instrumentNum+","+stuNum+",out"); 
         }
         pw.close();
