@@ -53,6 +53,7 @@ public class TeacherFrame extends javax.swing.JFrame {
         historyButton = new javax.swing.JButton();
         signedOutButton = new javax.swing.JButton();
         textField = new javax.swing.JTextField();
+        changePWordButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +119,13 @@ public class TeacherFrame extends javax.swing.JFrame {
             }
         });
 
+        changePWordButton.setText("Change Password");
+        changePWordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePWordButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout teacherPanel1Layout = new javax.swing.GroupLayout(teacherPanel1);
         teacherPanel1.setLayout(teacherPanel1Layout);
         teacherPanel1Layout.setHorizontalGroup(
@@ -126,18 +134,21 @@ public class TeacherFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(teacherPanel1Layout.createSequentialGroup()
-                        .addComponent(addInstrumentButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(teacherPanel1Layout.createSequentialGroup()
-                        .addComponent(addClassButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logoutButton)
-                        .addGap(18, 18, 18))
-                    .addGroup(teacherPanel1Layout.createSequentialGroup()
                         .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(signedOutButton)
                             .addComponent(historyButton))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
+                        .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(teacherPanel1Layout.createSequentialGroup()
+                                .addComponent(addInstrumentButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(changePWordButton))
+                            .addGroup(teacherPanel1Layout.createSequentialGroup()
+                                .addComponent(addClassButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logoutButton)))
+                        .addGap(18, 18, 18))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
                 .addContainerGap(68, Short.MAX_VALUE)
                 .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +172,9 @@ public class TeacherFrame extends javax.swing.JFrame {
                     .addComponent(logoutButton)
                     .addComponent(addClassButton))
                 .addGap(18, 18, 18)
-                .addComponent(addInstrumentButton)
+                .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addInstrumentButton)
+                    .addComponent(changePWordButton))
                 .addGap(18, 18, 18)
                 .addComponent(historyButton)
                 .addGap(18, 18, 18)
@@ -252,6 +265,13 @@ public class TeacherFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Instrument successfully added.");
             textField.setText("");
             }
+        }
+        //enter for changing password
+        else if(screen==6){
+            password=textField.getText();
+            JOptionPane.showMessageDialog(this, "Password successfully changed.");
+            textField.setText("");
+            //this must be finished ,test when logged out
         }
         //wrong password inputed 
         else{
@@ -344,6 +364,19 @@ public class TeacherFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldActionPerformed
 
+    private void changePWordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePWordButtonActionPerformed
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            textField.setVisible(true);
+            pWordLabel.setVisible(true);
+            loginButton.setVisible(true);
+            loginButton.setText("Enter");
+            addClassButton.setText("Back");
+            pWordLabel.setText("Enter new password.");
+            screen=6;
+    }//GEN-LAST:event_changePWordButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +415,7 @@ public class TeacherFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addClassButton;
     private javax.swing.JButton addInstrumentButton;
+    private javax.swing.JButton changePWordButton;
     private javax.swing.JButton historyButton;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton logoutButton;
