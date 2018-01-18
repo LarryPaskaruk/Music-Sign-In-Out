@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package javaapplication20;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,11 +16,13 @@ import java.util.logging.Logger;
 import static javaapplication20.History_Display.history;
 import static javaapplication20.History_Display.s;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author 068787845
  */
 public class TeacherFrame extends javax.swing.JFrame {
+
     String password = "teacher1";
     File student = new File("student.txt");
       String fileName;
@@ -38,7 +41,9 @@ public class TeacherFrame extends javax.swing.JFrame {
         signedOutButton.setVisible(false);
         textField.setVisible(false);
         jTextPane1.setEnabled(false);
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,20 +141,18 @@ public class TeacherFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(teacherPanel1Layout.createSequentialGroup()
+                        .addComponent(addInstrumentButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(teacherPanel1Layout.createSequentialGroup()
+                        .addComponent(addClassButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logoutButton)
+                        .addGap(18, 18, 18))
+                    .addGroup(teacherPanel1Layout.createSequentialGroup()
                         .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(signedOutButton)
                             .addComponent(historyButton))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
-                        .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(teacherPanel1Layout.createSequentialGroup()
-                                .addComponent(addInstrumentButton)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(teacherPanel1Layout.createSequentialGroup()
-                                .addComponent(addClassButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(logoutButton)))
-                        .addGap(18, 18, 18))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherPanel1Layout.createSequentialGroup()
                 .addContainerGap(222, Short.MAX_VALUE)
                 .addGroup(teacherPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,6 +228,8 @@ public class TeacherFrame extends javax.swing.JFrame {
       
     }//GEN-LAST:event_signedOutButtonActionPerformed
 
+    
+    
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
  if(screen==1){
             textField.setVisible(true);
@@ -238,7 +243,8 @@ public class TeacherFrame extends javax.swing.JFrame {
             loginButton.setVisible(true);
             loginButton.setText("Search");
             screen=4;
-        } 
+        }
+        
     }//GEN-LAST:event_historyButtonActionPerformed
 
     private void addInstrumentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInstrumentButtonActionPerformed
@@ -259,7 +265,24 @@ public class TeacherFrame extends javax.swing.JFrame {
 
     private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
  //when acting as the add class button
-        if(screen == 1){
+        if(screen == 4 && addClassButton.getText().equals("Back")){
+            jTextPane1.setEnabled(false);
+            jTextPane1.setText("");
+            textField.setText("");
+            textField.setVisible(false);
+            addClassButton.setText("Add Class");
+            pWordLabel.setText("");
+            pWordLabel.setVisible(false);
+             pWordField.setVisible(false);
+            pWordLabel.setVisible(false);
+            loginButton.setVisible(false);
+            logoutButton.setVisible(true);
+            addClassButton.setVisible(true);
+            addInstrumentButton.setVisible(true);
+            historyButton.setVisible(true);
+            signedOutButton.setVisible(true);
+        }
+        else if(screen==1){
             addInstrumentButton.setVisible(false);
             historyButton.setVisible(false);
             signedOutButton.setVisible(false);
@@ -273,8 +296,6 @@ public class TeacherFrame extends javax.swing.JFrame {
         }
         //when acting as the back button
         else{
-            jTextPane1.setEnabled(false);
-            jTextPane1.setText("");
             logoutButton.setVisible(true);
             addClassButton.setVisible(true);
             addInstrumentButton.setVisible(true);
@@ -286,6 +307,7 @@ public class TeacherFrame extends javax.swing.JFrame {
             addClassButton.setText("Add Class");
             screen=1;
         }        
+
     }//GEN-LAST:event_addClassButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -300,12 +322,15 @@ public class TeacherFrame extends javax.swing.JFrame {
         signedOutButton.setVisible(false);
         textField.setVisible(false);
         pWordLabel.setText("Please enter the teacher password.");
-        screen=0;
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
    //correct password inputted
-        if(screen == 0 && pWordField.getText().equals(password)){
+        if (screen == 4 && loginButton.getText().equals("Search")) {
+            hist =History_Display.historyDisplay(textField.getText());
+            jTextPane1.setText(hist);
+        }
+        else if(screen == 0 && pWordField.getText().equals(password)){
             pWordField.setVisible(false);
             pWordLabel.setVisible(false);
             loginButton.setVisible(false);
@@ -316,12 +341,8 @@ public class TeacherFrame extends javax.swing.JFrame {
             signedOutButton.setVisible(true);
             screen = 1;
         }
-        else if (screen == 4){// && loginButton.getText().equals("Search")) {
-            hist =History_Display.historyDisplay(textField.getText());
-            jTextPane1.setText(hist);
-        }
         //enter for add class 
-        else if(screen == 2 ){
+        else if(screen == 2 ){//&& pWordLabel.getText().equals("Print file name.")){
             File student = new File("Students.txt");
             fileName= textField.getText();
              Scanner readClass;         
@@ -359,6 +380,12 @@ public class TeacherFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Password is incorrect. Please try again.");
             pWordField.setText("");
         }     
+        
+        
+        
+        
+        
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void pWordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pWordFieldActionPerformed
