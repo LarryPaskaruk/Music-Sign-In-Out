@@ -39,4 +39,22 @@ public class Student {
     public String toString(Student s){
         return s.stuNumber+", "+s.fName+", "+s.lName;
     }   
+    /*
+    private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
+        if(screen==1){
+            textField.setVisible(true);
+            addInstrumentButton.setVisible(false);
+            historyButton.setVisible(false);
+            signedOutButton.setVisible(false);
+            changePasswordButton.setVisible(false);
+            pWordLabel.setVisible(true);
+            pWordLabel.setText("Please entre your new password:");
+            addClassButton.setText("Back");
+            jTextPane1.setEnabled(true);
+            loginButton.setVisible(true);
+            loginButton.setText("Confirm");
+            
+            screen=6;
+        }
+    */
 }
