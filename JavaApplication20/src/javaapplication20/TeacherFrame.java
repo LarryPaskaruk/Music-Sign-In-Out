@@ -23,9 +23,9 @@ public class TeacherFrame extends javax.swing.JFrame {
 
     String password = "teacher1";
     File student = new File("student.txt");
-      String fileName;
+    String fileName;
     String hist;
-     int screen = 0;
+    int screen = 0;
     
     /**
      * Creates new form TeacherFrame
@@ -230,8 +230,6 @@ public class TeacherFrame extends javax.swing.JFrame {
       
     }//GEN-LAST:event_signedOutButtonActionPerformed
 
-    
-    
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
  if(screen==1){
             textField.setVisible(true);
@@ -291,10 +289,10 @@ public class TeacherFrame extends javax.swing.JFrame {
             pWordLabel.setVisible(false);
             jTextPane1.setEnabled(false);
             jTextPane1.setText("");
+            textField.setText("");
             addClassButton.setText("Add Class");
             screen=1;
-        }        
-
+        } 
     }//GEN-LAST:event_addClassButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -313,7 +311,8 @@ public class TeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-   //correct password inputted
+        int i =0;
+        //correct password inputted
         if(screen == 0 && pWordField.getText().equals(password)){
             pWordField.setVisible(false);
             pWordLabel.setVisible(false);
@@ -338,16 +337,21 @@ public class TeacherFrame extends javax.swing.JFrame {
                 readClass = new Scanner(new File(fileName));
                 PrintWriter pw= new PrintWriter(new FileWriter(student,true));
                 while(readClass.hasNextLine()){
-                String temp = readClass.nextLine();
-                pw.println(temp);
-            } 
+                    String temp = readClass.nextLine();
+                    pw.println(temp);
+                } 
                 pw.close();  
                 readClass.close();
+                i=1;
             } catch (IOException ex) {
+                i=0;
                 JOptionPane.showMessageDialog(this, "Class not added.");
+                textField.setText("");
             }  
+            if(i==1){
             JOptionPane.showMessageDialog(this, "Class successfully added.");
             textField.setText("");
+            }
         }
         //enter for add instrument
         else if(screen==3){
@@ -357,11 +361,16 @@ public class TeacherFrame extends javax.swing.JFrame {
                 String temp = textField.getText();
                 pw.println(temp);
                 pw.close();  
+                i=1;
             } catch (IOException ex) {
+                i=0;
                 JOptionPane.showMessageDialog(this, "Instrument not added.");
+                textField.setText("");
             }
+            if(i==1){
             JOptionPane.showMessageDialog(this, "Instrument successfully added.");
             textField.setText("");
+            }
         }
         //wrong password inputed 
         else{
