@@ -307,6 +307,8 @@ public class TeacherFrame extends javax.swing.JFrame {
             jTextPane1.setText("");
             textField.setText("");
             addClassButton.setText("Add Class");
+            pWordField.setVisible(false);
+            pWordField.setText("");
             screen=1;
         } 
     }//GEN-LAST:event_addClassButtonActionPerformed
