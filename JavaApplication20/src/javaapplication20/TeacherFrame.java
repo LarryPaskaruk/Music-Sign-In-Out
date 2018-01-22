@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +22,11 @@ import javax.swing.JOptionPane;
  */
 public class TeacherFrame extends javax.swing.JFrame {
 
-    String password = "teacher1";
+    
     File student = new File("student.txt");
-      String fileName;
+    String fileName;
     String hist;
-     int screen = 0;
+    int screen = 0;
     
     /**
      * Creates new form TeacherFrame
@@ -330,68 +331,80 @@ public class TeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-   //correct password inputted
-        if(screen == 0 && pWordField.getText().equals(password)){
-            pWordField.setText("");
-            pWordField.setVisible(false);
-            pWordLabel.setVisible(false);
-            loginButton.setVisible(false);
-            logoutButton.setVisible(true);
-            addClassButton.setVisible(true);
-            addInstrumentButton.setVisible(true);
-            historyButton.setVisible(true);
-            signedOutButton.setVisible(true);
-            changePasswordButton.setVisible(true);
-            screen = 1;
-        }
-        else if (screen == 4){// && loginButton.getText().equals("Search")) {
-            hist =History_Display.historyDisplay(textField.getText());
-            jTextPane1.setText(hist);
-        }
-        //enter for add class 
-        else if(screen == 2 ){
-            File student = new File("Students.txt");
-            fileName= textField.getText();
-             Scanner readClass;         
-            try {
-                readClass = new Scanner(new File(fileName));
-                PrintWriter pw= new PrintWriter(new FileWriter(student,true));
-                while(readClass.hasNextLine()){
-                String temp = readClass.nextLine();
-                pw.println(temp);
-            } 
-                pw.close();  
-                readClass.close();
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Class not added.");
-            }  
-            JOptionPane.showMessageDialog(this, "Class successfully added.");
-            textField.setText("");
-        }
-        //enter for add instrument
-        else if(screen==3){
-            File instrument = new File("Instruments.txt");        
-            try {
-                PrintWriter pw= new PrintWriter(new FileWriter(instrument,true));
-                String temp = textField.getText();
-                pw.println(temp);
-                pw.close();  
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Instrument not added.");
+        try {
+            //correct password inputted
+            if(screen == 0 && Password.login(pWordField.getText())){
+                pWordField.setText("");
+                pWordField.setVisible(false);
+                pWordLabel.setVisible(false);
+                loginButton.setVisible(false);
+                logoutButton.setVisible(true);
+                addClassButton.setVisible(true);
+                addInstrumentButton.setVisible(true);
+                historyButton.setVisible(true);
+                signedOutButton.setVisible(true);
+                changePasswordButton.setVisible(true);
+                screen = 1;
             }
-            JOptionPane.showMessageDialog(this, "Instrument successfully added.");
-            textField.setText("");
+            else if (screen == 4){// && loginButton.getText().equals("Search")) {
+                hist =History_Display.historyDisplay(textField.getText());
+                jTextPane1.setText(hist);
+            }
+            //enter for add class
+            else if(screen == 2 ){
+                File student = new File("Students.txt");
+                fileName= textField.getText();
+                Scanner readClass;
+                try {
+                    readClass = new Scanner(new File(fileName));
+                    PrintWriter pw= new PrintWriter(new FileWriter(student,true));
+                    while(readClass.hasNextLine()){
+                        String temp = readClass.nextLine();
+                        pw.println(temp);
+                    }
+                    pw.close();
+                    readClass.close();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Class not added.");
+                }
+                JOptionPane.showMessageDialog(this, "Class successfully added.");
+                textField.setText("");
+            }
+            //enter for add instrument
+            else if(screen==3){
+                File instrument = new File("Instruments.txt");
+                try {
+                    PrintWriter pw= new PrintWriter(new FileWriter(instrument,true));
+                    String temp = textField.getText();
+                    pw.println(temp);
+                    pw.close();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Instrument not added.");
+                }
+                JOptionPane.showMessageDialog(this, "Instrument successfully added.");
+                textField.setText("");
+            }
+            else if(screen==6){
+                try {
+                    Password.newPassword(pWordField.getText());
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Password cannot be changed");
+                } catch (NoSuchAlgorithmException ex) {
+                    JOptionPane.showMessageDialog(this, "Password cannot be changed");
+                }
+                JOptionPane.showMessageDialog(this, "Pasword Changed Successfully");
+                pWordField.setText("");
+            }
+            //wrong password inputed
+            else{
+                JOptionPane.showMessageDialog(this, "Password is incorrect. Please try again.");
+                pWordField.setText("");
+            }
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Login unsuccessful");
+        } catch (NoSuchAlgorithmException ex) {
+            JOptionPane.showMessageDialog(this, "Login unsuccessful");
         }
-        else if(screen==6){
-            password=pWordField.getText();
-            JOptionPane.showMessageDialog(this, "Pasword Changed Successfully");
-            pWordField.setText("");
-        }
-        //wrong password inputed 
-        else{
-            JOptionPane.showMessageDialog(this, "Password is incorrect. Please try again.");
-            pWordField.setText("");
-        }     
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void pWordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pWordFieldActionPerformed
