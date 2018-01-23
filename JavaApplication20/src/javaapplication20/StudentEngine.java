@@ -6,6 +6,7 @@
 package javaapplication20;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,6 +32,8 @@ public class StudentEngine {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         Scanner s = new Scanner(history);
         LocalDateTime now = LocalDateTime.now();
+        // check that student and instrument are in system
+        
     //loop through the previous contents of the file to check if this instrument has been checked out or not
         //read every line into an arraylist
         ArrayList a=new ArrayList<String>();
@@ -64,5 +67,56 @@ public class StudentEngine {
         pw.close();
         s.close();
     }
-    
+    //LARRY
+    public static int errorCases(String stuNum, String instrumentNum){
+        boolean stu=false;
+        boolean inst=false;
+        File students = new File("Students.txt");
+        File instruments = new File("Instruments.txt");
+        Scanner sScan;
+        try {
+            sScan = new Scanner(students);
+            while (sScan.hasNextLine()){
+            String line = sScan.nextLine();
+            String[] tempStu = line.split(",");
+            //check if user matches each line in the file
+            if(tempStu[0].equals(stuNum)){
+                stu=true; 
+                break;
+            }
+        } 
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(StudentEngine.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        try {
+            Scanner iScan = new Scanner(instruments);
+            while (iScan.hasNextLine()){
+            String line = iScan.nextLine();
+            String[] tempInst = line.split(",");
+            //check if user matches each line in the file
+            if(tempInst[0].equals(instrumentNum)){
+                inst=true; 
+                break;
+            }
+        }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(StudentEngine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //if instrument and student are in system
+            if(inst==true&&stu==true){
+                return 0;
+            }
+        // if only instrument is in system
+            else if(inst==true&&stu==false){
+                return 1;
+            }
+        //if only student is in system
+            else if(inst==false&&stu==true){
+                return 2;
+            }
+        //if neither are in system
+            else{
+                return 3;
+            }
+    }
 }
