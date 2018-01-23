@@ -18,9 +18,14 @@ import java.util.Scanner;
  *
  * @author 348948605
  */
-public class Password {
-    static File password = new File("password.txt");
-//encrypt and save new password
+public class Password {//password class done by Michelle
+    static File password = new File("Password.txt");
+    /**
+     * encrypt and save new password
+     * @param pw
+     * @throws IOException
+     * @throws NoSuchAlgorithmException 
+     */
     public static void newPassword(String pw) throws IOException, NoSuchAlgorithmException{
         PrintWriter writer = new PrintWriter(new FileWriter(password,true));
         MessageDigest mesd = MessageDigest.getInstance("SHA-256");

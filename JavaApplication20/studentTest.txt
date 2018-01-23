@@ -1,6 +1,0 @@
-1000000,name,name,info
-1111111,name,name,info
-1222222,name,name,info
-1333333,name,name,info
-1444444,name,name,info
-1555555,name,name,info
