@@ -331,79 +331,68 @@ public class TeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        try {
-            //correct password inputted
-            if(screen == 0 && Password.login(pWordField.getText())){
-                pWordField.setText("");
-                pWordField.setVisible(false);
-                pWordLabel.setVisible(false);
-                loginButton.setVisible(false);
-                logoutButton.setVisible(true);
-                addClassButton.setVisible(true);
-                addInstrumentButton.setVisible(true);
-                historyButton.setVisible(true);
-                signedOutButton.setVisible(true);
-                changePasswordButton.setVisible(true);
-                screen = 1;
-            }
-            else if (screen == 4){// && loginButton.getText().equals("Search")) {
-                hist =History_Display.historyDisplay(textField.getText());
-                jTextPane1.setText(hist);
-            }
-            //enter for add class
-            else if(screen == 2 ){
-                File student = new File("Students.txt");
-                fileName= textField.getText();
-                Scanner readClass;
-                try {
-                    readClass = new Scanner(new File(fileName));
-                    PrintWriter pw= new PrintWriter(new FileWriter(student,true));
-                    while(readClass.hasNextLine()){
-                        String temp = readClass.nextLine();
-                        pw.println(temp);
-                    }
-                    pw.close();
-                    readClass.close();
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "Class not added.");
-                }
-                JOptionPane.showMessageDialog(this, "Class successfully added.");
-                textField.setText("");
-            }
-            //enter for add instrument
-            else if(screen==3){
-                File instrument = new File("Instruments.txt");
-                try {
-                    PrintWriter pw= new PrintWriter(new FileWriter(instrument,true));
-                    String temp = textField.getText();
+        int i =0;
+        //correct password inputted
+        if(screen == 0 && pWordField.getText().equals(password)){
+            pWordField.setText("");
+            pWordField.setVisible(false);
+            pWordLabel.setVisible(false);
+            loginButton.setVisible(false);
+            logoutButton.setVisible(true);
+            addClassButton.setVisible(true);
+            addInstrumentButton.setVisible(true);
+            historyButton.setVisible(true);
+            signedOutButton.setVisible(true);
+            changePasswordButton.setVisible(true);
+            screen = 1;
+        }
+        else if (screen == 4){// && loginButton.getText().equals("Search")) {
+            hist =History_Display.historyDisplay(textField.getText());
+            jTextPane1.setText(hist);
+        }
+        //enter for add class 
+        else if(screen == 2 ){
+            File student = new File("Students.txt");
+            fileName= textField.getText();
+             Scanner readClass;         
+            try {
+                readClass = new Scanner(new File(fileName));
+                PrintWriter pw= new PrintWriter(new FileWriter(student,true));
+                while(readClass.hasNextLine()){
+                    String temp = readClass.nextLine();
                     pw.println(temp);
-                    pw.close();
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "Instrument not added.");
-                }
-                JOptionPane.showMessageDialog(this, "Instrument successfully added.");
+                } 
+                pw.close();  
+                readClass.close();
+                i=1;
+            } catch (IOException ex) {
+                i=0;
+                JOptionPane.showMessageDialog(this, "Class not added.");
+                textField.setText("");
+            }  
+            if(i==1){
+            JOptionPane.showMessageDialog(this, "Class successfully added.");
+            textField.setText("");
+            }
+        }
+        //enter for add instrument
+        else if(screen==3){
+            File instrument = new File("Instruments.txt");        
+            try {
+                PrintWriter pw= new PrintWriter(new FileWriter(instrument,true));
+                String temp = textField.getText();
+                pw.println(temp);
+                pw.close();  
+                i=1;
+            } catch (IOException ex) {
+                i=0;
+                JOptionPane.showMessageDialog(this, "Instrument not added.");
                 textField.setText("");
             }
-            else if(screen==6){
-                try {
-                    Password.newPassword(pWordField.getText());
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "Password cannot be changed");
-                } catch (NoSuchAlgorithmException ex) {
-                    JOptionPane.showMessageDialog(this, "Password cannot be changed");
-                }
-                JOptionPane.showMessageDialog(this, "Pasword Changed Successfully");
-                pWordField.setText("");
+            if(i==1){
+            JOptionPane.showMessageDialog(this, "Instrument successfully added.");
+            textField.setText("");
             }
-            //wrong password inputed
-            else{
-                JOptionPane.showMessageDialog(this, "Password is incorrect. Please try again.");
-                pWordField.setText("");
-            }
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, "Login unsuccessful");
-        } catch (NoSuchAlgorithmException ex) {
-            JOptionPane.showMessageDialog(this, "Login unsuccessful");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
