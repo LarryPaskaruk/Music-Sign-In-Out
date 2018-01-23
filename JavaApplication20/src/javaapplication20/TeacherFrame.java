@@ -243,8 +243,6 @@ public class TeacherFrame extends javax.swing.JFrame {
       
     }//GEN-LAST:event_signedOutButtonActionPerformed
 
-    
-    
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
  if(screen==1){
             textField.setVisible(true);
@@ -308,10 +306,12 @@ public class TeacherFrame extends javax.swing.JFrame {
             pWordLabel.setVisible(false);
             jTextPane1.setEnabled(false);
             jTextPane1.setText("");
+            textField.setText("");
             addClassButton.setText("Add Class");
+            pWordField.setVisible(false);
+            pWordField.setText("");
             screen=1;
-        }        
-
+        } 
     }//GEN-LAST:event_addClassButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
