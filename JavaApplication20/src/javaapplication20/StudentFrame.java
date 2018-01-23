@@ -85,16 +85,31 @@ public class StudentFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int i=0;//variable representing if the information was written to the file successfully
-        try {
-            StudentEngine.signInOut(jTextField1.getText(),jTextField2.getText());
-        } catch (IOException ex) {
-            i=1;
-            JOptionPane.showMessageDialog(this,"Input/Output error");
+//        int i=0;//variable representing if the information was written to the file successfully
+//        try {
+//            StudentEngine.signInOut(jTextField1.getText(),jTextField2.getText());
+//        } catch (IOException ex) {
+//            i=1;
+//            JOptionPane.showMessageDialog(this,"Input/Output error");
+//        }
+//        if(i==0){//checks if the information was written to the file successfully
+//        JOptionPane.showMessageDialog(this,"Action Successful!");
+//        }
+        //LARRY
+        String stuNum =jTextField1.getText();
+        String instNum = jTextField2.getText();
+        if(StudentEngine.errorCases(stuNum,instNum)==0){
+            JOptionPane.showMessageDialog(this,"Action Successful!"); 
         }
-        if(i==0){//checks if the information was written to the file successfully
-        JOptionPane.showMessageDialog(this,"Action Successful!");
+        else if(StudentEngine.errorCases(stuNum,instNum)==1){
+            JOptionPane.showMessageDialog(this,"Invalid Student Number");
         }
+        else if(StudentEngine.errorCases(stuNum,instNum)==2){
+            JOptionPane.showMessageDialog(this,"Invalid Instrument");  
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Invalid Instrument and Student Number");
+        }       
         jTextField1.setText("");//reset the text fields
         jTextField2.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
