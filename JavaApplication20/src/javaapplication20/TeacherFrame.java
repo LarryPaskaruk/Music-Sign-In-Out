@@ -429,7 +429,7 @@ public class TeacherFrame extends javax.swing.JFrame {
     private void pWordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pWordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pWordFieldActionPerformed
-
+//Done by Michelle
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         if(screen==1){
             addInstrumentButton.setVisible(false);

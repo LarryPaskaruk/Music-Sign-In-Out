@@ -33,10 +33,13 @@ public class Instrument {
     public void setName(String name) {
         this.name = name;
     }
-
+/**
+ * returns the string representative of the instrument object
+ * @return the name of the object followed by a comma and the barcode of the instrument
+ */
     @Override
     public String toString() {
-        return(name+barNum);
+        return(name+","+barNum);
     }
     
     
