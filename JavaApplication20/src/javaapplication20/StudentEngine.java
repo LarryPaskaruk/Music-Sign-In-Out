@@ -19,13 +19,19 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *Student engine done by Michelle
+ *
  * @author 068787845
  */
 public class StudentEngine {
     
-    
-   //format of each record is in: time, instrument number, student number, in/out
+    /**
+     * Saves a record of each sign in/out transaction in the history file;
+     * format of each record is in: time, instrument number, student number, in/out
+     * @param stuNum
+     * @param instrumentNum
+     * @throws IOException 
+     */
+    //Done by Michelle
     public static void signInOut (String stuNum, String instrumentNum) throws IOException{
         File history = new File("History.txt");
         PrintWriter pw = new PrintWriter(new FileWriter(history,true));

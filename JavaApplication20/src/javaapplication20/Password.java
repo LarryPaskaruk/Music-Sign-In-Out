@@ -21,11 +21,12 @@ import java.util.Scanner;
 public class Password {//password class done by Michelle
     static File password = new File("Password.txt");
     /**
-     * encrypt and save new password
-     * @param pw
-     * @throws IOException
+     * Encrypt and save a new password to replace the old password
+     * @param pw the new password
+     * @throws IOException 
      * @throws NoSuchAlgorithmException 
      */
+    //Done by Michelle
     public static void newPassword(String pw) throws IOException, NoSuchAlgorithmException{
         PrintWriter writer = new PrintWriter(new FileWriter(password,true));
         MessageDigest mesd = MessageDigest.getInstance("SHA-256");
@@ -38,7 +39,14 @@ public class Password {//password class done by Michelle
         writer.println(sb1);//print the encrypted password
         writer.close();//close the print writer
     }
-//checkling the password when logging in
+    /**
+     * Checking if the user entered the right password when logging in
+     * @param pw the password entered by the user
+     * @return true if the password is correct, false if password is incorrect
+     * @throws FileNotFoundException
+     * @throws NoSuchAlgorithmException 
+     */
+    //Done by Michelle
     public static boolean login(String pw) throws FileNotFoundException, NoSuchAlgorithmException{
         MessageDigest mesd = MessageDigest.getInstance("SHA-256");
         boolean pW=false;
